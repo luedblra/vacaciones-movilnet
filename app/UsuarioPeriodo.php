@@ -37,4 +37,9 @@ class UsuarioPeriodo extends Model
         return $this->belongsTo('App\Periodo');
     }
     
+    public function vacaciones()
+    {
+        return $this->hasMany('App\Vacaciones','user_periodo_id');
+    }
+    
 }
