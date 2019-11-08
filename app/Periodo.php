@@ -25,7 +25,7 @@ class Periodo extends Model
      */
     public function usuario_periodo()
     {
-        return $this->hasMany('App\usuario_periodo');
+        return $this->hasMany('App\UsuarioPeriodo','periodo_id');
     }
 
 }

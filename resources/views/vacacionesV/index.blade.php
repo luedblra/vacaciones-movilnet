@@ -72,6 +72,32 @@
                         <a class="btn btn-success" href="{{ route('vacaciones.create') }}">Solicitar Vacaciones</a>
                     </div>
                 </div>
+                <div class="form-group">
+                    <table class="table table table-condensed">
+                        <tr>
+                            <th>Id</th>
+                            <th>Periodo</th>
+                            <th>N°. Dias</th>
+                            <th>Fecha Inicio</th>
+                            <th>Fecha Fin</th>
+                            <th width="280px">Accion</th>
+                        </tr>
+                        @foreach ($vacaciones_totales as $vacaciones)
+                        <tr>
+                            <td>{{ $vacaciones->id }}</td>
+                            <td>{{ $vacaciones->user_periodo->periodo->rango }}</td>
+                            <td>{{ $vacaciones->dias_t }}</td>
+                            <td>{{ $vacaciones->fecha_i }}</td>
+                            <td>{{ $vacaciones->fecha_f }}</td>
+                            <td>
+
+                            </td>
+                        </tr>
+                        @endforeach
+                    </table>
+
+                    {!! $vacaciones_totales->links() !!}
+                </div>
             </div>
         </div>
     </div>

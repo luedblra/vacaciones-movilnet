@@ -24,9 +24,9 @@ class UsuarioPeriodo extends Model
     /**
      * pentenece a varios usuarios
      */
-    public function users()
+    public function user()
     {
-        return $this->belongsToMany('App\User');
+        return $this->belongsTo('App\User');
     }
 
     /**

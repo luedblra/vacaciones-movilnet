@@ -18,8 +18,11 @@ class VacacionesController extends Controller
 
     public function index(Request $request)
     {
-        //dd('llegamos al control.. index');
-        return view('vacacionesV.index');
+        $usuario = Auth::user()->id;
+        $vacaciones_totales = Vacaciones::whereHas('user_periodo',function( $query) use($usuario){
+            $query->where('user_id',$usuario);
+        })->with('user_periodo.user','user_periodo.periodo')->paginate(5);
+        return view('vacacionesV.index',compact('vacaciones_totales'));
     }
 
     public function create(Request $request)
@@ -38,7 +41,7 @@ class VacacionesController extends Controller
         $fecha = explode('-',$request->rango_fecha);
         $fechainicio = Carbon::parse(trim($fecha[0]))->format('Y/m/d');
         $fechafin = Carbon::parse(trim($fecha[1]))->format('Y/m/d');
-        
+
         if(empty($user_periodo) != true){
             $user_periodo_id = $user_periodo->id;
         } else {
